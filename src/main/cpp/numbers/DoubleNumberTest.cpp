@@ -105,7 +105,9 @@ static void testDivision() {
     testDivision(1, 2, "0.500000");
     testDivision(100, -100, "-1.000000");
     testDivision(100, -10, "-10.000000");
-    testDivision(0, 0, "-nan");
+    testDivision(0, 0, "nan");
+    testDivision(-0, 0, "nan");
+    testDivision(0, -0, "nan");
     testDivision(1, 0, "inf");
     testDivision(1, 123456789, "0.000000");
     testDivision(0.5, 1.5, "0.333333");
