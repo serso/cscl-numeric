@@ -10,8 +10,8 @@
 #include <iostream>
 
 #define printErrorMessage(expected,actual,errorMessage)\
-        if (errorMessage != "") { std::cout << errorMessage << std::endl; }\
-        std::cout << Assertions::ASSERT << "Expected: " << expected << " differs from actual: " << actual << std::endl;
+        if (errorMessage != "") { std::cerr << errorMessage << std::endl; }\
+        std::cerr << Assertions::ASSERT << "Expected: " << expected << " differs from actual: " << actual << std::endl;
 
 /*
  **********************************************************************
@@ -58,4 +58,21 @@ void Assertions::equals(const int expected, const int actual,
     if (expected != actual) {
         printErrorMessage(expected, actual, errorMessage);
     }
+}
+
+void Assertions::equals(const void* expected, const void* actual,
+        const std::string& errorMessage) {
+    if (expected != actual) {
+        printErrorMessage(expected, actual, errorMessage);
+    }
+}
+
+void Assertions::notNull(const void* object) {
+    if (object == NULL) {
+        std::cerr << "Object must not be null" << std::endl;
+    }
+}
+
+void Assertions::fail() {
+    std::cerr << "Test failed" << std::endl;
 }

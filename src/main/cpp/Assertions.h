@@ -49,4 +49,11 @@ public:
 
     static void equals(const int expected, const int actual,
                 const std::string& errorMessage = "");
+
+    static void equals(const void* expected, const void* actual,
+                    const std::string& errorMessage = "");
+
+    static void notNull(const void* object);
+
+    static void fail();
 };

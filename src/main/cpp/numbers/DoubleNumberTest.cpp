@@ -11,7 +11,9 @@
 #include <limits>
 #include <string>
 
-using namespace cscl;
+namespace cscl {
+
+namespace tests {
 
 namespace DoubleNumberTest {
 
@@ -133,5 +135,8 @@ static void run() {
     testMulitplication();
     testDivision();
     testSign();
+}
+}
+
 }
 }

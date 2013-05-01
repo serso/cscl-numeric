@@ -8,7 +8,7 @@
 #include "Tests.cpp"
 
 int main(int argc, char **argv) {
-    Tests::run();
+    cscl::tests::run();
 
     return EXIT_SUCCESS;
 }

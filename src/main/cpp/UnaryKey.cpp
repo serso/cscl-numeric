@@ -5,8 +5,9 @@
  *      Author: serso
  */
 
+#include "Common.h"
 #include "UnaryKey.h"
-#include "Strings.h"
+
 
 namespace cscl {
 
@@ -17,7 +18,7 @@ UnaryKey::UnaryKey(const std::string& operation, const std::string& elementType)
 UnaryKey::~UnaryKey() {
 }
 
-bool UnaryKey::operator==(const UnaryKey& that) {
+const bool UnaryKey::operator==(const UnaryKey& that) const {
     bool result = false;
 
     if ( this->operation == that.operation ) {
@@ -32,11 +33,12 @@ bool UnaryKey::operator==(const UnaryKey& that) {
 std::size_t UnaryKeyHashFunction::operator ()(const UnaryKey& unaryKey) const {
     std::size_t result = Strings::hashCode(unaryKey.operation);
     result = Strings::hashCode(unaryKey.elementType, result);
+    std::cout << "hashCode called " << std::endl;
     return result;
 }
 
 bool UnaryKeyEqualsOperator::operator ()(const UnaryKey& left, const UnaryKey& right) const {
-    return false;
+    return left == right;
 }
 
 } /* namespace cscl */

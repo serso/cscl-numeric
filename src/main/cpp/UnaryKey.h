@@ -47,7 +47,7 @@ public:
      **********************************************************************
      */
 
-    bool operator==(const UnaryKey& that);
+    const bool operator==(const UnaryKey& that) const;
 };
 
 class UnaryKeyHashFunction {
