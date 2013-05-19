@@ -1,58 +1,64 @@
 #pragma once
 
 #include <iomanip>
+#include "../Common.h"
 
 namespace cscl {
 
-class RealNumber;
+    class Number : public Numeric {
+        /*
+         **********************************************************************
+         *
+         *                           FIELDS
+         *
+         **********************************************************************
+         */
+    private:
+        const double value;
+        
+        /*
+         **********************************************************************
+         *
+         *                           CONSTRUCTORS
+         *
+         **********************************************************************
+         */
 
-class Number {
+    public:
+        
+        Number(const double value);
+        
+        static const Number of(const double value);
+        
+        Number(const Number& that);
+        
+        virtual ~Number();
 
-    /*
-    **********************************************************************
-    *
-    *                           CONSTRUCTORS
-    *
-    **********************************************************************
-    */
+        /*
+         **********************************************************************
+         *
+         *                           METHODS
+         *
+         **********************************************************************
+         */
 
-public:
-    virtual ~Number() {};
+    public:
+        
+        const std::string toString() const;
 
-	/*
-	**********************************************************************
-	*
-	*                           METHODS
-	*
-	**********************************************************************
-	*/
+        const int getSign() const;
 
-public:
+        /*
+         **********************************************************************
+         *
+         *                           ARITHMETIC
+         *
+         **********************************************************************
+         */
 
-    virtual const bool isInteger() const = 0;
-
-    virtual const RealNumber& asReal() const = 0;
-
-    virtual const std::string toString() const = 0;
-
-    virtual const int getSign() const = 0;
-
-    /*
-    **********************************************************************
-    *
-    *                           ARITHMETIC
-    *
-    **********************************************************************
-    */
-
-	virtual const Number& operator+(const Number& that) const = 0;
-	virtual const Number& operator-(const Number& that) const = 0;
-	virtual const Number& operator*(const Number& that) const = 0;
-	virtual const Number& operator/(const Number& that) const = 0;
-
-    virtual const RealNumber& operator+(const RealNumber& that) const = 0;
-    virtual const RealNumber& operator-(const RealNumber& that) const = 0;
-    virtual const RealNumber& operator*(const RealNumber& that) const = 0;
-    virtual const RealNumber& operator/(const RealNumber& that) const = 0;
-};
+        const Number operator+(const Number& that) const;
+        const Number operator-(const Number& that) const;
+        const Number operator*(const Number& that) const;
+        const Number operator/(const Number& that) const;
+    };
 } /*namespace cscl*/
