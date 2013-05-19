@@ -1,11 +1,14 @@
 #pragma once
 
 #include <iomanip>
+#include <stddef.h>
+#include <sstream>
 #include "../Common.h"
+#include "../Maths.h"
 
 namespace cscl {
 
-    class Number : public Numeric {
+    template<class N> class Number {
         /*
          **********************************************************************
          *
@@ -14,8 +17,8 @@ namespace cscl {
          **********************************************************************
          */
     private:
-        const double value;
-        
+        const N value;
+
         /*
          **********************************************************************
          *
@@ -25,14 +28,19 @@ namespace cscl {
          */
 
     public:
-        
-        Number(const double value);
-        
-        static const Number of(const double value);
-        
-        Number(const Number& that);
-        
-        virtual ~Number();
+
+        Number(const N value) : value(value) {
+        }
+
+        static inline const Number<N> of(const N value) {
+            return Number<N>(value);
+        }
+
+        Number(const Number<N>& that) : value(that.value) {
+        }
+
+        virtual ~Number() {
+        };
 
         /*
          **********************************************************************
@@ -43,10 +51,16 @@ namespace cscl {
          */
 
     public:
-        
-        const std::string toString() const;
 
-        const int getSign() const;
+        const std::string toString() const {
+            std::ostringstream out;
+            out << std::fixed << this->value;
+            return out.str();
+        }
+
+        const int getSign() const {
+            return Maths::getSign(this->value);
+        }
 
         /*
          **********************************************************************
@@ -56,9 +70,20 @@ namespace cscl {
          **********************************************************************
          */
 
-        const Number operator+(const Number& that) const;
-        const Number operator-(const Number& that) const;
-        const Number operator*(const Number& that) const;
-        const Number operator/(const Number& that) const;
+        const Number<N> operator+(const Number<N>& that) const {
+            return of(this->value + that.value);
+        }
+
+        const Number<N> operator-(const Number<N>& that) const {
+            return of(this->value - that.value);
+        }
+
+        const Number<N> operator*(const Number<N>& that) const {
+            return of(this->value * that.value);
+        }
+
+        const Number<N> operator/(const Number<N>& that) const {
+            return of(this->value / that.value);
+        }
     };
 } /*namespace cscl*/

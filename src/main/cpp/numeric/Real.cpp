@@ -17,7 +17,20 @@ namespace cscl {
  **********************************************************************
  */
 
-Real::Real(const Number value) : value(value) {
+Real::Real(const RealNumber value) : value(value) {
+}
+
+Real::Real(const Real& that) : value(that.value) {
+}
+
+/*static*/
+const Real Real::of(const RealNumber value) {
+    return Real(value);
+}
+
+/*static*/
+const Real Real::of(const double value) {
+    return of(Numbers::toReal(value));
 }
 
 Real::~Real() {
@@ -30,6 +43,14 @@ Real::~Real() {
  *
  **********************************************************************
  */
+
+const std::string Real::toString() const {
+    return this->value.toString();
+}
+
+const int Real::getSign() const {
+    return this->value.getSign();
+}
 
 const Real Real::operator+(const Real& that) const {
     return Real(this->value + that.value);

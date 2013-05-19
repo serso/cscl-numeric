@@ -7,12 +7,16 @@
 
 #pragma once
 
+#include "Common.h"
+
 namespace cscl {
 
-class Numeric {
-public:
-    Numeric();
-    virtual ~Numeric();
-};
+    class Numeric {
+    public:
+        Numeric();
+        virtual ~Numeric();
+
+        virtual const std::string toString() const = 0;
+    };
 
 } /* namespace cscl */

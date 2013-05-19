@@ -8,6 +8,7 @@
 #pragma once
 
 #include "../Common.h"
+#include "../numbers/Numbers.h"
 #include "../numbers/Number.h"
 
 namespace cscl {
@@ -24,7 +25,7 @@ class Real: public cscl::Numeric {
 
 private:
 
-    const Number value;
+    const RealNumber value;
     /*
      **********************************************************************
      *
@@ -34,7 +35,13 @@ private:
      */
 
 public:
-    Real(const Number value);
+    Real(const RealNumber value);
+    
+    static inline const Real of(const RealNumber value);
+    
+    static inline const Real of(const double value);
+    
+    Real(const Real& that);
 
 public:
     virtual ~Real();
@@ -46,6 +53,10 @@ public:
      *
      **********************************************************************
      */
+    
+    const std::string toString() const;
+    
+    const int getSign() const;
 
     const Real operator+(const Real& that) const;
     const Real operator-(const Real& that) const;

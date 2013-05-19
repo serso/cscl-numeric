@@ -5,7 +5,8 @@
  *      Author: serso
  */
 
-#include "numbers/NumberTest.cpp"
+#include "numbers/RealNumberTest.cpp"
+#include "numeric/RealTest.cpp"
 #include <iostream>
 #include <exception>
 
@@ -17,6 +18,7 @@ static void run() {
 
     try {
         cscl::tests::RealNumberTest::run();
+        cscl::tests::RealTest::run();
         std::cerr << "All tests have been successfully executed!" << std::endl;
     } catch (std::exception& e) {
         std::cerr << "Some errors occurred while running the tests: "
